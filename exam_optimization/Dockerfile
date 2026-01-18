@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 # Copier et installer les dépendances Python
-COPY requirements.txt.txt .
+COPY requirements.txt .
 RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 # Copier le reste de l'application
 COPY . .
@@ -24,6 +24,7 @@ EXPOSE 8501
 
 # Commande pour démarrer l'application Streamlit
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]
+
 
 
 
